@@ -1,12 +1,13 @@
 import { MoviePoster } from "./shared/MoviePoster";
 import styled from "styled-components";
-export default function Footer() {
+export default function Footer({movieInfos}) {
+    const {posterURL,title,session} = movieInfos;
     return (
         <MovieInfos>
             <MoviePoster footer={true}>
-                <img src="https://image.tmdb.org/t/p/w500/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg" />
+                <img src={posterURL} alt={title} />
             </MoviePoster>
-            <MovieTitle>Enola Holmes<br/>Quinta-feira - 15:00
+            <MovieTitle>{title}<br/>{session}
             </MovieTitle>
         </MovieInfos>
     );

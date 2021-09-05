@@ -1,7 +1,7 @@
 import { SectionTitle } from "../shared/SectionTitle";
 import { MoviePoster } from "../shared/MoviePoster";
 import { MoviesList } from './Style'
-import getMoviesList from '../../API/APIUtils'
+import {getMoviesList} from '../../API/APIUtils'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
