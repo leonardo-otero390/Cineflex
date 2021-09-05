@@ -7,4 +7,7 @@ export const SectionTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  line-height:28.13px;
+  color: ${({success})=>success? "#247A6B":""};
 `

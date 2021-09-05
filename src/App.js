@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Home from './Components/Home/Home';
 import SessionSelection from './Components/SessionSelection/SessionSelection';
 import SeatSelection from './Components/SeatSelection/SeatSelection';
+import SuccessPage from './Components/SuccessPage/SuccessPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact component={Home}/>
         <Route path="/filme/:idFilme" exact component={SessionSelection}/>
         <Route path="/assentos/:idSessao" exact component={SeatSelection}/>
+        <Route path="/sucesso" exact component={SuccessPage}/>
       </Switch>
     </Router>
 

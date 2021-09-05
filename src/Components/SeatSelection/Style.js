@@ -24,4 +24,54 @@ align-items: center;
 const Container = styled.main`
 margin-bottom:147px;
 `
-export { SeatList, SeatRowStyled, Seat,Container };
+const ClientForm = styled.ul`
+width:327px;
+margin: 48px auto;
+//Remove arrow/spinners from number inputs toolkit
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+//End of input toolkit
+h1{
+    font-size:18px;
+    color:#293845;
+    margin-bottom:8px;
+}
+input { 
+    border:#d5d5d5 1px solid;
+    width: 100%;
+    margin-bottom:8px;
+    height:51px;
+    font-size:18px;
+    padding-left:18px;
+    ::placeholder{
+        color:#afafaf;
+    }
+}
+`
+const SeatLabel = styled.ul`
+width:327px;
+display:flex;
+justify-content:space-between;
+margin:0 auto;
+
+li{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    h1{
+        margin-top:8px;
+    }
+}
+
+`
+export { SeatList, SeatRowStyled, Seat, SeatLabel, Container, ClientForm };
