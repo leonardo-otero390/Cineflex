@@ -1,7 +1,6 @@
 import { MoviePoster } from "./shared/MoviePoster";
 import styled from "styled-components";
 export default function Footer({ movieInfos, session }) {
-    if (!movieInfos) return(<></>);
     const { posterURL, title } = movieInfos;
     let sessionText = '';
     if (session) {

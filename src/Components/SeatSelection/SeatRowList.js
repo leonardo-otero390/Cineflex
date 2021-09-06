@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { SeatList, SeatRowStyled, Seat } from './Style';
 export default function SeatRowList({ seats,changeClientOrder }) {
-    if (!seats) return (<></>);
     const seatRows = [];
     const numberOfRows = parseInt(seats.length / 10);
     const leftSeats = seats.length % 10;

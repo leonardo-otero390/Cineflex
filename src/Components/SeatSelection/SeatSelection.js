@@ -9,11 +9,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function SeatSelection({ orderFunctions, order }) {
     const { idSessao } = useParams();
-    const [seatsList, setSeatsList] = useState([]);
-    const { changeSeatsClientOrder, setMyClient,chooseMovieSession } = orderFunctions;
+    const [seatsList, setSeatsList] = useState({ seats: [], movie: { posterURL: '' },day:{weekday:''} });
+    const { changeSeatsClientOrder, setMyClient, chooseMovieSession } = orderFunctions;
     const { name, cpf, seatsOrder } = order;
     const isOrderReady = (!!name && !!cpf && !!seatsOrder.ids.length);
-
     useEffect(() => {
         getSeatsList(setSeatsList, idSessao);
     }, []);
@@ -49,7 +48,7 @@ export default function SeatSelection({ orderFunctions, order }) {
                     </li>
                 </ClientForm>
                 <Link to={isOrderReady ? "/sucesso" : '/assentos/' + idSessao}>
-                    <OrangeButton session={false} onClick={() => {reserveSeats({ ids: seatsOrder.ids, name, cpf }, isOrderReady); chooseMovieSession(movie,day,time);}}>
+                    <OrangeButton session={false} onClick={() => { reserveSeats({ ids: seatsOrder.ids, name, cpf }, isOrderReady); chooseMovieSession(movie, day, time); }}>
                         Reservar assento(s)
                     </OrangeButton>
                 </Link>

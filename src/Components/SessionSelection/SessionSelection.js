@@ -9,12 +9,11 @@ import { Link } from "react-router-dom";
 
 export default function SessionSelection() {
     const { idFilme } = useParams();
-    const [sessionsList, setSessionsList] = useState([]);
+    const [sessionsList, setSessionsList] = useState({posterURL:'',title:''});
 
     useEffect(() => {
         getSessionsList(setSessionsList, idFilme);
     }, []);
-    console.log(sessionsList);
     const { posterURL, title, days } = sessionsList;
 
     return (
