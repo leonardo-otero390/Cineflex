@@ -6,20 +6,56 @@ import SessionSelection from './Components/SessionSelection/SessionSelection';
 import SeatSelection from './Components/SeatSelection/SeatSelection';
 import SuccessPage from './Components/SuccessPage/SuccessPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 function App() {
+  const [clientOrder, setClientOrder] = useState(
+    {
+      seatsOrder: { ids: [], seatsName: [] },
+      name: '',
+      cpf: ''
+    });
+  function setMyClient(value, type) {
+    const newOrder = { ...clientOrder };
+    switch (type) {
+      case 'name':
+        newOrder.name = value;
+        break;
+      case 'cpf':
+        newOrder.cpf = value;
+        break;
+      default:
+    }
+    setClientOrder(newOrder);
+  }
+  function changeSeatsClientOrder(operation, seatId, name) {
+    const newOrder = { ...clientOrder };
+    const { seatsOrder } = newOrder;
+    switch (operation) {
+      case 'add':
+        seatsOrder.ids.push(seatId);
+        seatsOrder.seatsName.push(name);
+        break;
+      case 'remove':
+        seatsOrder.ids = seatsOrder.ids.filter(id => id === seatId ? false : true);
+        seatsOrder.seatsName = seatsOrder.seatsName.filter(seatName => seatName === name ? false : true);
+        break;
+      default:
+    }
+    setClientOrder(newOrder);
+  }
   return (
     <Router>
       <Header />
       <Switch>
-        <Route path="/" exact component={Home}/>
-        <Route path="/filme/:idFilme" exact component={SessionSelection}/>
-        <Route path="/assentos/:idSessao" exact component={SeatSelection}/>
-        <Route path="/sucesso" exact component={SuccessPage}/>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/filme/:idFilme" component={SessionSelection} />
+        <Route exact path="/assentos/:idSessao" render={(props) => (
+          <SeatSelection {...props} orderFunctions={{ changeSeatsClientOrder, setMyClient }} order={clientOrder} />
+        )} />
+        <Route exact path="/sucesso" component={SuccessPage} />
       </Switch>
     </Router>
-
-
   );
 }
 

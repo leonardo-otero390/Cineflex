@@ -23,6 +23,9 @@ align-items: center;
 `
 const Container = styled.main`
 margin-bottom:147px;
+a{
+    text-decoration:none;
+}
 `
 const ClientForm = styled.ul`
 width:327px;

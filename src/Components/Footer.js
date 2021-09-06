@@ -1,13 +1,20 @@
 import { MoviePoster } from "./shared/MoviePoster";
 import styled from "styled-components";
-export default function Footer({movieInfos}) {
-    const {posterURL,title,session} = movieInfos;
+export default function Footer({ movieInfos, session }) {
+    if (!movieInfos) return(<></>);
+    const { posterURL, title } = movieInfos;
+    let sessionText = '';
+    if (session) {
+        const day = session.day.weekday;
+        const time = session.time;
+        sessionText = `${day} - ${time}`;
+    }
     return (
         <MovieInfos>
             <MoviePoster footer={true}>
                 <img src={posterURL} alt={title} />
             </MoviePoster>
-            <MovieTitle>{title}<br/>{session}
+            <MovieTitle>{title}<br />{sessionText}
             </MovieTitle>
         </MovieInfos>
     );
