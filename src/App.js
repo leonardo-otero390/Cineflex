@@ -9,12 +9,24 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 function App() {
+  const [movieSession, setMovieSession] = useState('');
   const [clientOrder, setClientOrder] = useState(
     {
       seatsOrder: { ids: [], seatsName: [] },
       name: '',
       cpf: ''
     });
+  function resetOrder() {
+    setMovieSession('');
+    setClientOrder({
+      seatsOrder: { ids: [], seatsName: [] },
+      name: '',
+      cpf: ''
+    });
+  }
+  function chooseMovieSession(movie, day, time) {
+    setMovieSession({ movie, day, time })
+  }
   function setMyClient(value, type) {
     const newOrder = { ...clientOrder };
     switch (type) {
@@ -51,9 +63,11 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/filme/:idFilme" component={SessionSelection} />
         <Route exact path="/assentos/:idSessao" render={(props) => (
-          <SeatSelection {...props} orderFunctions={{ changeSeatsClientOrder, setMyClient }} order={clientOrder} />
+          <SeatSelection {...props} orderFunctions={{ changeSeatsClientOrder, setMyClient, chooseMovieSession }} order={clientOrder} />
         )} />
-        <Route exact path="/sucesso" component={SuccessPage} />
+        <Route exact path="/sucesso" render={(props) => (
+          <SuccessPage {...props} order={clientOrder} movieSession={movieSession} resetOrder={resetOrder} />
+        )} />
       </Switch>
     </Router>
   );

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function SeatSelection({ orderFunctions, order }) {
     const { idSessao } = useParams();
     const [seatsList, setSeatsList] = useState([]);
-    const { changeSeatsClientOrder, setMyClient } = orderFunctions;
+    const { changeSeatsClientOrder, setMyClient,chooseMovieSession } = orderFunctions;
     const { name, cpf, seatsOrder } = order;
     const isOrderReady = (!!name && !!cpf && !!seatsOrder.ids.length);
 
@@ -49,7 +49,7 @@ export default function SeatSelection({ orderFunctions, order }) {
                     </li>
                 </ClientForm>
                 <Link to={isOrderReady ? "/sucesso" : '/assentos/' + idSessao}>
-                    <OrangeButton session={false} onClick={() => reserveSeats({ ids: seatsOrder.ids, name, cpf }, isOrderReady)}>
+                    <OrangeButton session={false} onClick={() => {reserveSeats({ ids: seatsOrder.ids, name, cpf }, isOrderReady); chooseMovieSession(movie,day,time);}}>
                         Reservar assento(s)
                     </OrangeButton>
                 </Link>

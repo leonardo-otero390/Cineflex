@@ -1,7 +1,9 @@
 import { SectionTitle } from "../shared/SectionTitle";
 import { OrangeButton } from "../shared/OrangeButton";
 import styled from 'styled-components';
-export default function SeatSelection() {
+import { Link } from "react-router-dom";
+export default function SeatSelection({ order, movieSession ,resetOrder}) {
+    const { movie, day, time } = movieSession;
     return (
         <>
             <SectionTitle success>
@@ -14,29 +16,29 @@ export default function SeatSelection() {
                 <InfosContainer>
                     <InfosTitle><strong>Filme e sessão</strong></InfosTitle>
                     <div>
-                        <Infos>Título</Infos>
-                        <Infos>Sessão</Infos>
+                        <Infos>{movie.title}</Infos>
+                        <Infos>{day.date + ' ' + time}</Infos>
                     </div>
                 </InfosContainer>
                 <InfosContainer>
-                    <InfosTitle><strong>Filme e sessão</strong></InfosTitle>
+                    <InfosTitle><strong>Ingressos</strong></InfosTitle>
                     <div>
-                        <Infos>Título</Infos>
-                        <Infos>Sessão</Infos>
+                        {order.seatsOrder.seatsName.map((name, index) => <Infos key={index}>Assento {name}</Infos>)}
                     </div>
                 </InfosContainer>
                 <InfosContainer>
-                    <InfosTitle><strong>Filme e sessão</strong></InfosTitle>
+                    <InfosTitle><strong>Comprador</strong></InfosTitle>
                     <div>
-                        <Infos>Título</Infos>
-                        <Infos>Sessão</Infos>
+                        <Infos>Nome: {order.name}</Infos>
+                        <Infos>CPF: {order.cpf}</Infos>
                     </div>
                 </InfosContainer>
             </Container>
-            <OrangeButton session={false}>
-                Voltar para Home
-            </OrangeButton>
-
+            <Link to="/" style={{textDecoration: "none"}}>
+                <OrangeButton session={false} onClick={resetOrder}>
+                    Voltar para Home
+                </OrangeButton>
+            </Link>
         </>
     );
 }

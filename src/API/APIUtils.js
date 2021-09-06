@@ -22,6 +22,6 @@ function reserveSeats(order,isReady) {
         alert('Por favor preencha todos os dados e escolha pelo menos um assento');
         return;
     }
-    const request = axios.post(API_URL + RESERVE_SEATS, order);
+    axios.post(API_URL + RESERVE_SEATS, order);
 }
 export { getMoviesList, getSessionsList, getSeatsList, reserveSeats };
